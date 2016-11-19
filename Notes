@@ -1,8 +1,23 @@
 Team Name: Eman Meat - NOTES
 
+User - Set reservation
 
-npm UglifyJS2 (minifies JS to run site faster)
+* Name
+* Email
+* Phone
+* # of guests
 
-Faker
+* Update reservation
+* Delete reservation
 
+Manager 
 
+* Approve Reservation
+* Set Reservation Dates/Time
+  ** Being able to set multiple reservations at once. (BulkCreate?)
+* Delete a reservation date
+* Update Reservation
+
+**NICE TO HAVES
+
+* Manager can set the # of guests for each reservation
