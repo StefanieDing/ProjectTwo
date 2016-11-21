@@ -1,8 +1,28 @@
 var express = require('express');
 var router = express.Router();
+// var calender = require('../models/calender.js');
 
-router.get('/', function (req, res){
+router.get('/reserve', function (req, res){
   //asks to book a reservation or login with manager
+});
+
+// router.get('/calender', function(req, res){
+//   calender.findAll().then(function(data){
+//   var calenderUnderRouterGetTwo = {table: id,
+//                 table: name,
+//                 table: time,
+//                 table: duration
+//                   };
+//   res.render('index', calenderUnderRouterGetTwo);
+//   });
+// });
+
+var stuff = require('../models/events.js');
+
+router.get('/events', function(req, res){
+  stuff.findAll().then(function(data){
+  res.render('index', data);
+  });
 });
 
 router.get('/reserve', function (req, res){
