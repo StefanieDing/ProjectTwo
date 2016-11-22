@@ -20,11 +20,12 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-// var routes = require('./controllers/burgers_controller.js');
-// app.use('/', routes);
-app.get('/', function(req, res) {
-  res.render('index');//for frontend dev use
-})
+var routes = require('./controllers/user_controller.js');
+app.use('/', routes);
+// app.get('/', function(req, res) {
+//   res.render('index');//for frontend dev use
+// })
+
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
   console.log('Listening on PORT ' + port);

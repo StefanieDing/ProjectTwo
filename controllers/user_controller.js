@@ -12,10 +12,10 @@ router.get('/', function (req, res){
 router.get('/reserve', function (req, res){
   //displays calendar of available dates
   // calender.findAll ({}).then(function(data){
-    res.render('calendarPage'/*handlebars file*/);
+    res.render('calendarPage');
   //   };
     
-  // }) 
+  // });
 });
 
 //takes in the information user inputs to reserve a booking
@@ -39,7 +39,7 @@ router.put('/update/reservation/:id', function (req, res){
   where:{
     id: [req.params.id]
   }
-}
+});
 });
 
 router.delete('/delete/reservation/:id', function (req, res){
