@@ -14,13 +14,12 @@ router.get('/reserve', function (req, res){
   // calender.findAll ({}).then(function(data){
     res.render('calendarPage');
   //   };
-    
   // });
 });
 
 //takes in the information user inputs to reserve a booking
 router.post('/create/reservation', function (req, res){
-  
+
   Customer.create({
     name: req.body.name,
     phone: req.body.phone,
