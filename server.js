@@ -20,8 +20,8 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-var routes = require('./controllers/user_controller.js');
-app.use('/', routes);
+var userRoutes = require('./controllers/user_controller.js');
+app.use('/', userRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
