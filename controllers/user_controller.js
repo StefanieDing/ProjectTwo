@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 // var app = express();
-var Event = require('../models')['events'];
-var User = require('../models')['users'];
+var Event = require('../models')['Events'];
+var User = require('../models')['Users'];
 
 //index page to either book a reservation or login as admin
 router.get('/', function (req, res){
@@ -48,10 +48,10 @@ router.post('/create/reservation', function (req, res){
 router.put('/update/reservation/:id/:spots', function (req, res){
   //user can update the information of reservation
   Event.update({
-    availableSpots: [req.params.spots] - 1
+    availableSpots: (req.params.spots) - 1
 },{
   where:{
-    id: [req.params.id]
+    id: req.params.id
   }
 });
 });
@@ -71,20 +71,21 @@ router.put('/update/reservation/:id/:spots', function (req, res){
 router.get('/customerInfo/:id', function(req, res){
   User.findAll({
     where: {
-      id: [req.params.id]
+      id: req.params.id
     }
   });
 });
 
 //enters in event details and spots available
 router.post('/create/manager', function (req, res){
+
   Event.create({
-    name: [req.body.name],
-    date: [req.body.date],
-    startTime: [req.body.startTime],
-    endTime: [req.body.endTime],
-    location: [req.body.location],
-    availableSpots: [req.body.availableSpots]
+    name: req.body.name,
+    date: req.body.date,
+    startTime: req.body.startTime,
+    endTime: req.body.endTime,
+    location: req.body.location,
+    availableSpots: req.body.availableSpots
   });
 
   res.redirect('/manager');
@@ -93,12 +94,12 @@ router.post('/create/manager', function (req, res){
 //allows manager to update calendar
 router.put('/update/manager/:id', function(req, res){
   Event.update({
-     name: [req.body.name],
-    date: [req.body.date],
-    startTime: [req.body.startTime],
-    endTime: [req.body.endTime],
-    location: [req.body.location],
-    availableSpots: [req.body.availableSpots]
+    name: req.body.name,
+    date: req.body.date,
+    startTime: req.body.startTime,
+    endTime: req.body.endTime,
+    location: req.body.location,
+    availableSpots: req.body.availableSpots
   },{
     where: {
       id: [req.params.id]
@@ -126,7 +127,7 @@ router.put('/update/manager/:id', function(req, res){
 router.delete('/delete/manager/:id', function(req, res){
   Event.destroy({
     where: {
-      id: [req.params.id]
+      id: req.params.id
     }
   });
 
