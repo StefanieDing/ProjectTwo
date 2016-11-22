@@ -4,16 +4,14 @@ var router = express.Router();
 var Event = require('../models')['events'];
 var User = require('../models')['users'];
 
-// var methodOverride = require('method-override');
-// app.use(methodOverride('_method'));
+//index page to either book a reservation or login as admin
 router.get('/', function (req, res){
-  //asks to book a reservation or login with manager
   res.render('index');
 });
 
+//displays calendar of available dates
 router.get('/reserve', function (req, res){
-  //displays calendar of available dates
-  // calender.findAll ({}).then(function(data){
+  // Event.findAll ({}).then(function(data){
     res.render('calendarPage');
   //   };
   // });
