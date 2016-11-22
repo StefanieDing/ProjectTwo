@@ -1,1 +1,40 @@
 <h2>This is the manager page</h2>
+
+<ul>
+  {{list of each event}}
+
+<h2>Create an Event</h2>
+<form class="" action="/create/manager" method="POST">
+
+  <div class="form-group">
+    <label for="evnt">Event Name:</label>
+    <input type="text" id="evnt" name="name">
+  </div>
+    
+  <div class="form-group">
+    <label for="dayte">Date:</label>
+    <input type="text" id="dayte" name="date">
+  </div>  
+
+  <div class="form-group">
+    <label for="startTime">Start time:</label>
+    <input type="text" id="startTime" name="startTime">
+  </div>
+
+  <div class="form-group">
+    <label for="endTime">End Time:</label>
+    <input type="text" id="endTime" name="endTime">
+  </div>
+
+  <div class="form-group">
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location">
+  </div>
+
+  <div class="form-group">
+    <label for="availSpot">Available Spot:</label>
+    <input type="text" id="availSpot" name="availableSpots">
+  </div>
+
+  <button type="submit">Add Event</button>
+  </form>
