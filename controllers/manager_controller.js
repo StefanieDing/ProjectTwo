@@ -81,3 +81,5 @@ router.delete('/delete/manager/:id', function(req, res){
   res.redirect('/manager')
 });
 
+module.exports = router;
+

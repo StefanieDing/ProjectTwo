@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
+// var app = express();
 var Event = require('../models')['events'];
 var Customer = require('../models')['customers'];
 
+// var methodOverride = require('method-override');
+// app.use(methodOverride('_method'));
 router.get('/', function (req, res){
   //asks to book a reservation or login with manager
   res.render('index');
@@ -52,3 +54,4 @@ router.delete('/delete/reservation/:id', function (req, res){
   res.redirect('/reservation');
 });
 
+module.exports = router;
