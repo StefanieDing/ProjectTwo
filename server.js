@@ -2,6 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+var path = require('path');
+var passport = require('passport');
+var Strategy = require('passport-facebook').Strategy;
+
 var app = express();
 //connection to the MySQL database
 var connection = require('./config/connection.js');
