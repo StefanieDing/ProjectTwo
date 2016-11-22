@@ -25,8 +25,7 @@ router.post('/create/reservation', function (req, res){
   User.create({
     name: req.body.name,
     phone: req.body.phone,
-    email: req.body.email,
-    numOfGuests: req.body.numOfGuests
+    email: req.body.email
   });
   //send to update isPending to true
   res.redirect('/update/reservation/:id');
@@ -45,7 +44,7 @@ router.put('/update/reservation/:id', function (req, res){
 
 router.delete('/delete/reservation/:id', function (req, res){
   //user can delete reservation
-  Customer.destroy({
+  User.destroy({
     where: {
       id: [req.params.id]
     }
@@ -63,16 +62,16 @@ router.get('/login/manager', function (req, res){
 
 //manager homepage
 router.get('/manager', function (req, res){
-  Event.findAll({
-    attributes: ['name', 'date', 'startTime', 'endTime', 'location', 'availableSpots']
-  }).then(function(data){
-    res.render('manager', data);
-  })
+  // Event.findAll({
+  //   attributes: ['name', 'date', 'startTime', 'endTime', 'location', 'availableSpots']
+  // }).then(function(data){
+    res.render('manager'/*, data*/);
+  // })
 });
 
 //get customer information for the reservation
 router.get('/customerInfo/:id', function(req, res){
-  Customer.findAll({
+  User.findAll({
     where: {
       id: [req.params.id]
     }
@@ -110,8 +109,8 @@ router.put('/update/manager/:id', function(req, res){
 //manager approves reservation
 router.put('/update/event/"id', function(req, res){
   Event.update({
-    isPending: //false,
-    isReserved: //true
+    isPending: 0,//false,
+    isReserved: 1//true
   },{
     where: {
       id: [req.params.id]
