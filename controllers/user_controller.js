@@ -11,11 +11,11 @@ router.get('/', function (req, res){
 
 router.get('/reserve', function (req, res){
   //displays calendar of available dates
-  calender.findAll ({}).then(function(data){
-    res.render('customer'/*handlebars file*/, data);
-    };
+  // calender.findAll ({}).then(function(data){
+    res.render('calendarPage'/*handlebars file*/);
+  //   };
     
-  }) 
+  // }) 
 });
 
 //takes in the information user inputs to reserve a booking
