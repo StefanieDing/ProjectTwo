@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-// var app = express();
+
 var Event = require('../models')['Events'];
 var User = require('../models')['Users'];
 
@@ -11,10 +11,10 @@ router.get('/', function (req, res){
 
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
-  // Event.findAll ({}).then(function(data){
+  Event.findAll ({}).then(function(data){
     res.render('calendarPage');
-  //   };
-  // });
+  };
+  });
 });
 
 //manager login
@@ -60,7 +60,7 @@ router.put('/update/reservation/:id/:spots', function (req, res){
 //   //user can delete reservation
 //   User.destroy({
 //     where: {
-//       id: [req.params.id]
+//       id: req.params.id
 //     }
 //   });
 
@@ -116,7 +116,7 @@ router.put('/update/manager/:id', function(req, res){
 //     isReserved: 1//true
 //   },{
 //     where: {
-//       id: [req.params.id]
+//       id: req.params.id
 //     }
 //   });
 
