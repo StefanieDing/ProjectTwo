@@ -1,10 +1,14 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Customers = sequelize.define('Customers', {
+  var Users = sequelize.define('Users', {
     name: DataTypes.STRING,
     phone: DataTypes.STRING,
     email: DataTypes.STRING,
-    numOfGuests: DataTypes.INTEGER
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+      //false might need to be 0
+    }
   }, {
     classMethods: {
       associate: function(models) {
@@ -12,5 +16,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Customers;
+  return Users;
 };
