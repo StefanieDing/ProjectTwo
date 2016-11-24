@@ -18,11 +18,11 @@ app.use(passport.session());
 // });
 
 passport.use(new LocalStrategy({
-  usernameField: 'username',
+  usernameField: 'email',
   passwordField: 'password'
 },
 function(username, password, done){
-  User.find({ where: {username: username}})
+  User.find({ where: {email: username}})
     .success(function(user){
       if(!user)
         return done(null, false, {message: "User entered does not exist."});

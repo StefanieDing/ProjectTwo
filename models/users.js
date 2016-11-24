@@ -4,6 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     phone: DataTypes.STRING,
     email: DataTypes.STRING,
+    password: DataTypes.STRING,
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: 0
