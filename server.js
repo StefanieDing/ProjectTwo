@@ -1,20 +1,21 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-
+var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var Sequelize = require('sequelize');
 
 var app = express();
 //connection to the MySQL database
 var connection = require('./config/connection.js');
 
-app.configure(function(){
-  app.use(express.session());
-  app.use(passport.initialize());
-  app.use(passport.session());
+// app.configure(function(){  // old and deprecated?
+// app.use(express.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
-});
+// });
 
 passport.use(new LocalStrategy({
   usernameField: 'username',
@@ -40,7 +41,7 @@ passport.serializeUser(function(user, done){
 
 passport.deserializeUser(function(id, done){
   User.find(id)
-    .succcess(function(user{
+    .succcess(function(user){
       done(null, user);
     }).error(function(err){
         done(new Error('The user ' + id + 'does not exist.'));
