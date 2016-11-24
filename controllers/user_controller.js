@@ -13,7 +13,7 @@ router.get('/reserve', function (req, res){
   //displays calendar of available dates
   // Event.findAll ({}).then(function(data){
   // });
-   res.render('calendarPage');
+   res.render('calendarPage');//i changed this -g
 });
 
 //takes in the information user inputs to reserve a booking
@@ -50,4 +50,3 @@ router.delete('/delete/reservation/:id', function (req, res){
 
   res.redirect('/reservation');
 });
-

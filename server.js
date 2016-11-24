@@ -25,6 +25,11 @@ app.set('view engine', 'handlebars');
 app.get('/', function(req, res) {
   res.render('index');//for frontend dev use
 })
+
+app.get('/reserve', function(req, res) {
+  res.render('reserveUser');//for frontend dev use
+})
+
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
   console.log('Listening on PORT ' + port);
