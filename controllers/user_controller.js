@@ -97,6 +97,10 @@ router.get('/reserve', function (req, res){
   });
 });
 
+router.get('/manager-test', function(req,res){
+  res.render('manager');
+});
+
 //takes in the information user inputs to reserve a booking
 router.post('/create/reservation', function (req, res){
   User.create({
