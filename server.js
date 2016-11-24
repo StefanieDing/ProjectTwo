@@ -10,20 +10,12 @@ var app = express();
 //connection to the MySQL database
 var connection = require('./config/connection.js');
 
-<<<<<<< HEAD
-app.use(express.session());
-app.use(passport.initialize());
-app.use(passport.session());
-=======
-
 // app.configure(function(){  // old and deprecated?
 // app.use(express.session());
 app.use(passport.initialize());
 app.use(passport.session());
 
 // });
-
->>>>>>> 97b5034d97f72f67c41e231f9624f2f17a5d7fc3
 
 passport.use(new LocalStrategy({
   usernameField: 'username',
