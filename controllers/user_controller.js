@@ -71,7 +71,7 @@ router.get('/manager', requireAuth, adminHandler){
 
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
-  Event.findAll ({}).then(function(data){
+  Event.findAll({}).then(function(data){
     res.render('calendarPage');
     };
   });
