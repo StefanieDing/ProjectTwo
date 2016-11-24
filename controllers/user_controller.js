@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 // var sequelize = require('sequelize');
 var Event = require('../models')['Events'];
-var User = require('../models')['users'];
+var User = require('../models')['Users'];
 console.log(Event)
 
 //index route
