@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-
-var Event = require('../models')['events'];
+// var sequelize = require('sequelize');
+var Event = require('../models')['Events'];
 var User = require('../models')['users'];
+console.log(Event)
 
 //index route
 router.get('/', function (req, res){
@@ -11,7 +12,7 @@ router.get('/', function (req, res){
 });
 
 //LOGIN
-router.get('/login', loginGetRoute){
+router.get('/login', loginGetRoute);
   //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
 
 function loginGetRoute(req, res){
@@ -24,35 +25,47 @@ function loginGetRoute(req, res){
     //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
     req.session.messages = null;
   }
-}
 };
+// equivalent to above
+// router.get('/login', function(req,res){
+//   if(req.user){
+//     //redirects if the user is already logged in.
+//     res.redirect('/');
+//   }
+//   else{
+//     //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
+//     req.session.messages = null;
+//     res.render('login', {message: req.session.messages});
+//   }
+// });
 
-router.post('/login', loginPostRoute){
-  function loginPostRoute(req, res, next){
-    passport.authenticate('local', function(err, user, info){
+router.post('/login', loginPostRoute);
+
+function loginPostRoute(req, res, next){
+  passport.authenticate('local', function(err, user, info){
+    if(err){
+      return next(err);
+    }
+    if(!user){
+      req.session.messages=info.message;
+      return res.redirect('/login');
+    }
+
+    req.logIn(user, function(err){
       if(err){
+        req.session.messages="Error!";
         return next(err);
       }
-      if(!user){
-        req.session.messages=info.message;
-        return res.redirect('/login');
-      }
-
-      req.logIn(user, function(err){
-        if(err){
-          req.session.messages="Error!";
-          return next(err);
-        }
-        req.session.messages="Login successful!";
-        return res.redirect('/');
-      });
-    })(req, res, next);
-  }
+      req.session.messages="Login successful!";
+      return res.redirect('/');
+    });
+  })(req, res, next);
 }
+
 
 //LOGOUT
 //we will need to make a log out page or modal for the below route.
-router.get('/logout', logout){
+router.get('/logout', logout)
   function logout(req, res){
     if(req.isAuthenticated()){
       req.logout();
@@ -60,20 +73,34 @@ router.get('/logout', logout){
     }
       res.redirect('/');
   }
-}
+
 
 //need to add a route to authenticate the manager. see 2.5;
-router.get('/manager', requireAuth, adminHandler){
-  function requireAuth(req, res, next){
-    if()
+router.get('/manager', requireAuth, adminHandler)
+
+function requireAuth(req, res, next){
+  if(req.isAuthenticated()){
+    next();
+  } else {
+    res.redirect('/login');
   }
 }
 
+function adminHandler(req, res, next){
+  res.render('manager', {});
+};
+
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
+<<<<<<< HEAD
   Event.findAll({}).then(function(data){
     res.render('calendarPage');
     };
+=======
+  Event.findAll({})
+  .then(function(data){
+    res.render('calendarPage', {data:data});
+>>>>>>> 97b5034d97f72f67c41e231f9624f2f17a5d7fc3
   });
 });
 
