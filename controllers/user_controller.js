@@ -11,6 +11,11 @@ router.get('/', function (req, res){
   res.render('index');
 });
 
+//SIGN UP
+router.get('/signup', function(req, res){
+  res.render('signup');
+});
+
 //LOGIN
 router.get('/login', loginGetRoute);
   //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
@@ -18,10 +23,10 @@ router.get('/login', loginGetRoute);
 function loginGetRoute(req, res){
   if(req.user){
     //redirects if the user is already logged in.
-    res.redirect('/');
+    res.redirect('login');
   }
   else{
-    res.render('login', {message: req.session.messages});
+    res.render('/', {message: req.session.messages});
     //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
     req.session.messages = null;
   }
