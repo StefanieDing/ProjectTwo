@@ -4,7 +4,6 @@ var router = express.Router();
 var Event = require('../models')['events'];
 var User = require('../models')['users'];
 
-
 //index route
 router.get('/', function (req, res){
   //asks to book a reservation or login with manager

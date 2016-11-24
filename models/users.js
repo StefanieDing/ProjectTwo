@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     email: DataTypes.STRING,
     isAdmin: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: 0
       //false might need to be 0
     }
   }, {
