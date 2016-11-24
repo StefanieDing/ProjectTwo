@@ -12,6 +12,7 @@ var CALENDAR = function () {
 		}
 
 		function switchMonth(next, month, year) {
+
 			var curr = label.text().trim().split(" "), calendar, tempYear = parseInt(curr[1], 10);
 
 			month = month || ((next) ? ((curr[0] === "December") ? 0 : months.indexOf(curr[0]) + 1) : ( (curr[0] === "January") ? 11 : months.indexOf(curr[0]) - 1) );
@@ -121,7 +122,14 @@ window.onclick = function(event) {
 }
 
 //this gets any td with a class name of "calDateData"
+function modelPrompt() {
 $('.calDateData').click(function(){
-	console.log("hey its me", this)
 		modal.style.display = "block";
 });
+
+$('.today').click(function(){
+		modal.style.display = "block";
+});
+
+}
+modelPrompt(CALENDAR());
