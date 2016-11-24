@@ -40,7 +40,7 @@ passport.serializeUser(function(user, done){
 
 passport.deserializeUser(function(id, done){
   User.find(id)
-    .succcess(function(user{
+    .success(function(user){
       done(null, user);
     }).error(function(err){
         done(new Error('The user ' + id + 'does not exist.'));
