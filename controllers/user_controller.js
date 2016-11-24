@@ -8,7 +8,7 @@ console.log(Event)
 //index route
 router.get('/', function (req, res){
   //asks to book a reservation or login with manager
-  res.redirect('/reserve')
+  res.render('index');
 });
 
 //LOGIN
@@ -92,9 +92,8 @@ function adminHandler(req, res, next){
 
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
-  Event.findAll({})
-  .then(function(data){
-    res.render('calendarPage', {data:data});
+  Event.findAll({}).then(function(data){
+    res.render('calendarPage');
   });
 });
 
