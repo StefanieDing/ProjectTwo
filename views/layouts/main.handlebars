@@ -39,6 +39,12 @@
 		<meta property="og:site_name" content="Site name" />
 	</head>
 	<body>
+		<div class="imgMain">
+		  <div id="banner_backdrop">
+		  </div>
+		  <div id="banner_content">
+		  </div>
+		</div>
 
 		{{{ body }}}
 
@@ -46,3 +52,11 @@
 
 	</body>
 </HTML>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="calendar/calendar.js"></script>
+<script>
+var cal = CALENDAR();
+
+cal.init();
+</script>
