@@ -17,9 +17,13 @@ router.get('/signup', function(req, res){
 });
 
 //LOGIN
-router.get('/login', loginGetRoute);
-  //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
+router.get('/login', function(req, res){
+  res.render('login');
+});
 
+router.post('/login', loginGetRoute);
+  //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
+ 
 function loginGetRoute(req, res){
   if(req.user){
     //redirects if the user is already logged in.
