@@ -194,4 +194,3 @@ router.delete('/delete/manager/:id', function(req, res){
 });
 
 module.exports = router;
-
