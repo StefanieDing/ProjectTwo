@@ -6,13 +6,13 @@
 
 body {
   background-color: rgb(225,225,225);
-  font: Georgia, serif
+  font: Georgia, serif;
 }
 
 .imgMain > #banner_backdrop {
   position: relative;
   background: url("../img/res10.jpg") repeat-x;
-  width: 3000px;
+  width: 3037px;
   height: 600px;
   -webkit-animation: aniMain 15s linear infinite;
   opacity: 0.5;
@@ -147,7 +147,6 @@ maye change icons, need space between icons, circle icon woul be betteR?*/
   top: 0px;
   width: 100%;
   height: 100px;
-  background-color:
 }
 
 .managerBtn {
@@ -180,6 +179,17 @@ maye change icons, need space between icons, circle icon woul be betteR?*/
 .mainOptionWin {
    border-radius: 25px;
    background: rgb(255,255,255);
+   /*padding: 20px;
+   width: 300px;*/
+  /* position: absolute;*/
+   left: 38%;
+   top: 20%;
+   box-shadow: 10px 10px 5px #888888;
+}
+
+.eventCreate {
+   border-radius: 25px;
+   background: rgb(255,255,255);
    padding: 20px;
    width: 300px;
    height: 400px;
@@ -203,4 +213,129 @@ maye change icons, need space between icons, circle icon woul be betteR?*/
 .resBtnHolder {
   position: absolute;
   left: 10px;
+}
+
+
+.resvPage {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(209,43,82);
+}
+
+.resCalendar {
+  border-radius: 25px;
+  background: rgb(255,255,255);
+  padding: 20px;
+  width: 1300px;
+  height: 600px;
+  position: absolute;
+  left: 100px;
+  top: 10%;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.calendarName {
+  position: absolute;
+  left: 150px;
+  font-size: 40px;
+  height: 50px;
+  width: 1000px;
+  border-bottom: solid black;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.calendarName > p {
+  position: absolute;
+  left: 350px;
+  bottom: 0px;
+}
+
+.appColummns {
+  position: absolute;
+  width: 1100px;
+  height: 450px;
+  top: 100px;
+  left: 130px;
+}
+.appColummns > ul > li {
+  margin-left: 10px;
+  float:left;
+  display: inline;
+  display: block;
+  width: 250px;
+  height: 450px;
+  left: 0px;
+
+  /*background-color: rgb(185,246,202);*/
+
+}
+
+li > .appt1 {
+  background-color: rgb(185,246,202);
+  height: 450px;
+  border-radius: 25px;
+}
+li > .appt2 {
+  background-color: rgb(255,255,141);
+  height: 450px;
+  border-radius: 25px;
+}
+
+li > .appt3 {
+  background-color: rgb(132,255,255);
+  height: 450px;
+  border-radius: 25px;
+}
+
+li > .appt4 {
+  background-color: rgb(128,216,255);
+  height: 450px;
+  border-radius: 25px;
+}
+
+.date-appt1 {
+  position: absolute;
+  display: inline;
+  font-size: 20px;
+  float: left;
+  font-family: 'Montserrat', sans-serif;
+  top: 20px;
+  margin: 5px;
+  width: 240px;
+  height: 20px;
+  border-bottom: solid black;
+}
+
+.date-appt1 > p {
+  position: absolute;
+  bottom: 0px;
+  left: 65px;
+}
+
+.res-date-blockholders {
+  position: relative;
+  top: 50px;
+  left: 10px;
+  width: 230px;
+  height: 380px;
+}
+
+.res-date-blocks {
+  height: 40px;
+  left: 10px;
+  background-color: rgb(209,43,82);
+  width: 210px;
+  position: relative;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.res-date-blocks > p {
+  position: relative;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  left: 10px;
+  top: 5px;
 }

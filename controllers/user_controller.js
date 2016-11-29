@@ -11,21 +11,34 @@ router.get('/', function (req, res){
   res.render('index');
 });
 
-//LOGIN
-router.get('/login', loginGetRoute);
-  //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
+//SIGN UP
+router.get('/signup', function(req, res){
+  res.render('signup');
+});
 
-function loginGetRoute(req, res){
-  if(req.user){
-    //redirects if the user is already logged in.
-    res.redirect('/');
-  }
-  else{
-    res.render('login', {message: req.session.messages});
-    //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
-    req.session.messages = null;
-  }
-};
+router.post('/signup', function(req, res){
+  //creates new user
+});
+
+//LOGIN
+router.get('/login', function(req, res){
+  res.render('login');
+});
+
+// router.get('/login', loginGetRoute);
+//   //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
+ 
+// function loginGetRoute(req, res){
+//   if(req.user){
+//     //redirects if the user is already logged in.
+//     res.redirect('login');
+//   }
+//   else{
+//     res.render('/', {message: req.session.messages});
+//     //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
+//     req.session.messages = null;
+//   }
+// };
 // equivalent to above
 // router.get('/login', function(req,res){
 //   if(req.user){
@@ -93,7 +106,7 @@ function adminHandler(req, res, next){
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
   Event.findAll({}).then(function(data){
-    res.render('calendarPage');
+    res.render('reserveUser');
   });
 });
 
@@ -189,4 +202,3 @@ router.delete('/delete/manager/:id', function(req, res){
 });
 
 module.exports = router;
-
