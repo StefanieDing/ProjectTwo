@@ -5,11 +5,40 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Sequelize = require('sequelize');
+var models = require('./models')
+//requires all my models
+// var Users = require('./models/users.js');
+
+models.User
+//accesses user model
 
 var app = express();
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
 //connection to the MySQL database
 var connection = require('./config/connection.js');
 
+// var Users = connection.define('Users', {
+//   name: {
+//     type: Sequelize.STRING
+//   },
+//   phone: {
+//     type: Sequelize.STRING
+//   },
+//   email: {
+//     type: Sequelize.STRING
+//   },
+//   password: {
+//     type: Sequelize.STRING
+//   },
+//   isAdmin: {
+//     type: Sequelize.BOOLEAN,
+//     defaultValue: false
+//     //false might need to be 0
+//   }
+// });
 // app.configure(function(){  // old and deprecated?
 // app.use(express.session());
 app.use(passport.initialize());
@@ -22,8 +51,8 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 },
 function(username, password, done){
-  User.find({ where: {email: username}})
-    .success(function(user){
+  Users.findOne({ where: {email: username}})
+    .then(function(user){
       if(!user)
         return done(null, false, {message: "User entered does not exist."});
       else if(!hashing.compare(password, user.password))
@@ -51,9 +80,9 @@ passport.deserializeUser(function(id, done){
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(process.cwd() + '/public'));
 
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+// app.use(bodyParser.urlencoded({
+//   extended: false
+// }));
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
 var exphbs = require('express-handlebars');

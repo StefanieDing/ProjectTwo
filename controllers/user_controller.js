@@ -3,10 +3,12 @@ var router = express.Router();
 // var sequelize = require('sequelize');
 var Event = require('../models')['Events'];
 var User = require('../models')['Users'];
+var passport = require('passport')
 console.log(Event)
 
 //index route
 router.get('/', function (req, res){
+  console.log(req.user)
   //asks to book a reservation or login with manager
   res.render('index');
 });
@@ -16,21 +18,30 @@ router.get('/signup', function(req, res){
   res.render('signup');
 });
 
-//LOGIN
-router.get('/login', loginGetRoute);
-  //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
+// router.post('/signup', function(req, res){
 
-function loginGetRoute(req, res){
-  if(req.user){
-    //redirects if the user is already logged in.
-    res.redirect('login');
-  }
-  else{
-    res.render('/', {message: req.session.messages});
-    //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
-    req.session.messages = null;
-  }
-};
+// });
+
+//LOGIN
+router.get('/login', function(req, res){
+  res.render('login');
+});
+
+//below used to be the router.get for the login page.
+// router.post('/login', loginGetRoute);
+  //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
+ 
+// function loginGetRoute(req, res){
+//   if(req.user){
+//     //redirects if the user is already logged in.
+//     res.redirect('login');
+//   }
+//   else{
+//     res.render('/', {message: req.session.messages});
+//     //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
+//     req.session.messages = null;
+//   }
+// };
 // equivalent to above
 // router.get('/login', function(req,res){
 //   if(req.user){
@@ -47,21 +58,28 @@ function loginGetRoute(req, res){
 router.post('/login', loginPostRoute);
 
 function loginPostRoute(req, res, next){
+  console.log('your face')
   passport.authenticate('local', function(err, user, info){
+    console.log(user)
     if(err){
+      console.log(err)
       return next(err);
     }
     if(!user){
-      req.session.messages=info.message;
+      console.log('redirect')
+      // req.session.messages=info.message;
       return res.redirect('/login');
     }
 
     req.logIn(user, function(err){
       if(err){
-        req.session.messages="Error!";
+        console.log('if')
+        console.log(err)
+        // req.session.messages="Error!";
         return next(err);
       }
-      req.session.messages="Login successful!";
+      console.log('it worked')
+      // req.session.messages="Login successful!";
       return res.redirect('/');
     });
   })(req, res, next);
@@ -98,7 +116,7 @@ function adminHandler(req, res, next){
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
   Event.findAll({}).then(function(data){
-    res.render('calendarPage');
+    res.render('reserveUser');
   });
 });
 
@@ -194,4 +212,3 @@ router.delete('/delete/manager/:id', function(req, res){
 });
 
 module.exports = router;
-

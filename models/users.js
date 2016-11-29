@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     password: DataTypes.STRING,
     isAdmin: {
       type: DataTypes.BOOLEAN,
-      defaultValue: 0
+      defaultValue: false
       //false might need to be 0
     }
   }, {

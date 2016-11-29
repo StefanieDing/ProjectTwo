@@ -1,11 +1,16 @@
-<h2>Manager Page</h2>
+<div class="row">
+  <h2 class="center-align">Manager Page</h2>
 
-<ul>
-  {{! list of each event}}
-</ul>
+  <ul>
+    {{! list of each event}}
+  </ul>
+</div>
 
-<div class="container">
-  <h2>Create an Event</h2>
+<div class="row">
+      <div class="col s3"></div>
+      
+<div class="col s6 container card-panel pink lighten-4">
+  <h2 class="center-align">Create an Event</h2>
   <form class="" action="/create/manager" method="POST">
 
         <div class="form-group">
@@ -36,9 +41,9 @@
         <div class="form-group">
           <label for="availSpot">Available Spot:</label>
           <input type="number" min="1" max="100" id="availSpot" name="availableSpots">
-        </div>
-
-        <a class="waves-effect waves-light btn-large red accent-4">Add Event</a>
+        </div>  
+</div>
+    <div class="col s5"></div>
+    <div class="col s6"><a class="waves-effect waves-light btn-large red accent-4 ">Add Event</a></div>
   </form>
 </div>
-
