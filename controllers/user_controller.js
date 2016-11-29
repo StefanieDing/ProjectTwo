@@ -98,7 +98,7 @@ function adminHandler(req, res, next){
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
   Event.findAll({}).then(function(data){
-    res.render('calendarPage');
+    res.render('reserveUser');
   });
 });
 
