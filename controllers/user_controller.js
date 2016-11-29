@@ -17,7 +17,13 @@ router.get('/signup', function(req, res){
 });
 
 router.post('/signup', function(req, res){
-  //creates new user
+  //creates new user from valid form
+   User.create({
+    name: req.body.name,
+    phone: req.body.phone,
+    email: req.body.email,
+    password: req.body.password
+  });
 });
 
 //LOGIN
@@ -119,7 +125,7 @@ router.post('/create/reservation', function (req, res){
   User.create({
     name: req.body.name,
     phone: req.body.phone,
-    email: req.body.email,
+    email: req.body.email
   });
   //updates reservation and decreases available spots
   res.redirect('/update/reservation/:id/:spots');
