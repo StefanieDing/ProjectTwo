@@ -78,7 +78,7 @@ function loginPostRoute(req, res, next){
         return next(err);
       }
       req.session.messages="Login successful!";
-      return res.redirect('/');
+      return res.redirect('/manager');
     });
   })(req, res, next);
 }

@@ -23,7 +23,7 @@ passport.use(new LocalStrategy({
 },
 function(username, password, done){
   User.find({ where: {email: username}})
-    .success(function(user){
+    .then(function(user){
       if(!user)
         return done(null, false, {message: "User entered does not exist."});
       else if(!hashing.compare(password, user.password))
