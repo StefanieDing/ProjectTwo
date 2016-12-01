@@ -5,6 +5,7 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Sequelize = require('sequelize');
+var User = require('./models')['Users'];
 
 var app = express();
 //connection to the MySQL database
