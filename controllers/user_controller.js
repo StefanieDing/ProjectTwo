@@ -3,7 +3,8 @@ var router = express.Router();
 // var sequelize = require('sequelize');
 var Event = require('../models')['Events'];
 var User = require('../models')['Users'];
-console.log(Event)
+var passport = require('passport');
+console.log(Event);
 
 //index route
 router.get('/', function (req, res){
@@ -16,21 +17,36 @@ router.get('/signup', function(req, res){
   res.render('signup');
 });
 
-//LOGIN
-router.get('/login', loginGetRoute);
-  //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
+router.post('/signup', function(req, res){
+  //creates new user from valid form
+   User.create({
+    name: req.body.name,
+    phone: req.body.phone,
+    email: req.body.email,
+    password: req.body.password
+  });
+});
 
-function loginGetRoute(req, res){
-  if(req.user){
-    //redirects if the user is already logged in.
-    res.redirect('login');
-  }
-  else{
-    res.render('/', {message: req.session.messages});
-    //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
-    req.session.messages = null;
-  }
-};
+//LOGIN
+router.get('/login', function(req, res){
+  res.render('login');
+  console.log('testtest1');
+});
+
+// router.get('/login', loginGetRoute);
+//   //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
+ 
+// function loginGetRoute(req, res){
+//   if(req.user){
+//     //redirects if the user is already logged in.
+//     res.redirect('login');
+//   }
+//   else{
+//     res.render('/', {message: req.session.messages});
+//     //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
+//     req.session.messages = null;
+//   }
+// };
 // equivalent to above
 // router.get('/login', function(req,res){
 //   if(req.user){
@@ -44,7 +60,11 @@ function loginGetRoute(req, res){
 //   }
 // });
 
-router.post('/login', loginPostRoute);
+router.post('/login', function(req, res, next){
+  loginPostRoute(req, res, next);
+});
+
+console.log('testtest2');
 
 function loginPostRoute(req, res, next){
   passport.authenticate('local', function(err, user, info){
@@ -62,7 +82,8 @@ function loginPostRoute(req, res, next){
         return next(err);
       }
       req.session.messages="Login successful!";
-      return res.redirect('/');
+
+      return res.redirect('/reserve');
     });
   })(req, res, next);
 }
@@ -98,7 +119,7 @@ function adminHandler(req, res, next){
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
   Event.findAll({}).then(function(data){
-    res.render('calendarPage');
+    res.render('reserveUser');
   });
 });
 
@@ -111,7 +132,7 @@ router.post('/create/reservation', function (req, res){
   User.create({
     name: req.body.name,
     phone: req.body.phone,
-    email: req.body.email,
+    email: req.body.email
   });
   //updates reservation and decreases available spots
   res.redirect('/update/reservation/:id/:spots');
@@ -194,4 +215,3 @@ router.delete('/delete/manager/:id', function(req, res){
 });
 
 module.exports = router;
-

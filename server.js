@@ -5,6 +5,7 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Sequelize = require('sequelize');
+var models = require('./models');
 
 var app = express();
 //connection to the MySQL database
@@ -22,8 +23,8 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 },
 function(username, password, done){
-  User.find({ where: {email: username}})
-    .success(function(user){
+  models.Users.find({ where: {email: username}})
+    .then(function(user){
       if(!user)
         return done(null, false, {message: "User entered does not exist."});
       else if(!hashing.compare(password, user.password))
