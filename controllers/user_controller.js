@@ -36,54 +36,27 @@ router.get('/login', function(req, res){
   res.render('login');
 });
 
-// router.get('/login', loginGetRoute);
-//   //the above line ended with a ; instead of { in the guide.This applies to all authentication related routes.
- 
-// function loginGetRoute(req, res){
-//   if(req.user){
-//     //redirects if the user is already logged in.
-//     res.redirect('login');
-//   }
-//   else{
-//     res.render('/', {message: req.session.messages});
-//     //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
-//     req.session.messages = null;
-//   }
-// };
-// equivalent to above
-// router.get('/login', function(req,res){
-//   if(req.user){
-//     //redirects if the user is already logged in.
-//     res.redirect('/');
-//   }
-//   else{
-//     //for the message object above, the message should be in the html/handlebars. The example followed used a different rendering engine so this could change.
-//     req.session.messages = null;
-//     res.render('login', {message: req.session.messages});
-//   }
-// });
-
 router.post('/login', loginPostRoute);
 
-function loginPostRoute(req, res, next){
-  passport.authenticate('local', function(err, user, info){
-    if(err){
-      return next(err);
-    }
-    if(!user){
-      req.session.messages=info.message;
-      return res.redirect('/login');
-    }
+function loginPostRoute(req, res/*, next*/){
+  // passport.authenticate('local', function(err, user, info){
+  //   if(err){
+  //     return next(err);
+  //   }
+  //   if(!user){
+  //     req.session.messages=info.message;
+  //     return res.redirect('/login');
+  //   }
 
-    req.logIn(user, function(err){
-      if(err){
-        req.session.messages="Error!";
-        return next(err);
-      }
-      req.session.messages="Login successful!";
-      return res.redirect('/manager');
-    });
-  })(req, res, next);
+  //   req.logIn(user, function(err){
+  //     if(err){
+  //       req.session.messages="Error!";
+  //       return next(err);
+  //     }
+  //     req.session.messages="Login successful!";
+  //     return res.redirect('/manager');
+  //   });
+  // })(req, res, next);
 }
 
 
