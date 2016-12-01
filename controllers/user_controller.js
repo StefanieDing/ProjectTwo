@@ -26,6 +26,8 @@ router.post('/signup', function(req, res){
     email: req.body.email,
     password: req.body.password
   });
+
+   res.redirect('login');
 });
 
 //LOGIN
@@ -78,7 +80,7 @@ function loginPostRoute(req, res, next){
         return next(err);
       }
       req.session.messages="Login successful!";
-      return res.redirect('/');
+      return res.redirect('/manager');
     });
   })(req, res, next);
 }
