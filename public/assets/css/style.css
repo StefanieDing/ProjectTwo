@@ -212,11 +212,6 @@ maye change icons, need space between icons, circle icon woul be betteR?*/
    box-shadow: 10px 10px 5px #888888;
     overflow-y: scroll;
 }
-.eventCreate > .form-group {
-  padding: 0px;
-  margin-bottom: 0px;
-  margin-top: -10px;
-}
 
 .resBtn {
   position: absolute;
