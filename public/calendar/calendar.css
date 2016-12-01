@@ -1,10 +1,41 @@
 body {
 	background: #e0e0e0;
 }
+
+.managerCalendar {
+	z-index: 12000;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.managerCalendar > .container{
+	z-index: 12000;
+	position: absolute;
+	left: 0%;
+	top: 0.0%;
+	height: 480px;
+	width: 800px;
+	margin:50px auto;
+	font: 13px/1.5 "Helvetica Neue", Helvetica, Arial, san-serif;
+	display:table;
+	box-shadow:0px 3px 3px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow:0px 3px 3px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow:0px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.managerCalendar > .container>#cal {
+	position: absolute;
+	top: 0px;
+}
+
 #cal {
-	position: relative;
+	position: absolute;
+	top: 8.8%;
 	z-index: 1;
-	height: 600px;
+	height: 480px;
 	width: 800px;
 	margin:50px auto;
 	font: 13px/1.5 "Helvetica Neue", Helvetica, Arial, san-serif;
@@ -100,8 +131,8 @@ body {
 #cal td {
 	color:#2d2d2d;
 	width:30px;
-	height:60px;/*here*/
-	line-height:65px;/*here*/
+	height:30px;/*here*/
+	line-height:45px;/*here*/
 	text-align:center;
 	border:1px solid #e6e6e6;
 	cursor:default;

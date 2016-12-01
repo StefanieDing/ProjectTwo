@@ -1,3 +1,15 @@
+function tdAddThisClass() {
+	$('td').each(function () {
+		if ($(this).html().match(/^\s*\d[\d,\.]*\s*$/)) {
+			$(this).css('background-color', 'red');
+			$(this).addClass('calDateData');
+			// TODO: something cool
+		}
+	});
+}
+
+
+
 var CALENDAR = function () {
 	var wrap, label,
 			months = ["January", "February", "March", "April", "May", "June", "July","August", "September", "October", "November", "December"];
@@ -31,6 +43,8 @@ var CALENDAR = function () {
 				.find(".temp")
 					.fadeOut("slow", function () { $(this).remove(); });
 			label.text(calendar.label);
+
+			tdAddThisClass();
 		}
 
 	function createCal(year, month) {
@@ -92,6 +106,7 @@ var CALENDAR = function () {
 		return createCal.cache[year][month];
 	}
 	createCal.cache = {};
+	tdAddThisClass();
 
 	return {
 		init : init,
@@ -102,10 +117,13 @@ var CALENDAR = function () {
 };
 
 
-
+tdAddThisClass();
 // Get the modal
 var modal = document.getElementById('myModal');
-
+$(document).on('click', '.calDateData', function(){
+		var modal = document.getElementById('myModal');
+		modal.style.display = "block";
+});
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
@@ -121,15 +139,18 @@ window.onclick = function(event) {
     }
 }
 
+
+
+
+
+
+
 //this gets any td with a class name of "calDateData"
 function modelPrompt() {
-$('.calDateData').click(function(){
-		modal.style.display = "block";
-});
 
 $('.today').click(function(){
 		modal.style.display = "block";
 });
 
 }
-modelPrompt(CALENDAR());
+modelPrompt();
