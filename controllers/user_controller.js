@@ -37,21 +37,29 @@ router.get('/login', function(req, res){
   res.render('login');
 });
 
-router.post('/login', loginPostRoute);
-
-function loginPostRoute(req, res/*, next*/){
+router.post('/login', function(req, res){
   console.log(req.body);
-
   var enteredPswd = req.body.password;
 
-  // User.findAll({
-  //   where: {
-  //     email: req.body.email,
-  //     $and: [
-  //       {password: enteredPswd}
-  //     ]
-  //   }.then(function(data)
-  // })
+  User.findAll({
+    where: {
+      email: req.body.email,
+      $and: [
+        {password: enteredPswd}
+      ]
+    }
+    }).then(function(data){
+      if(data){
+        res.redirect('/master-test');
+      } else{
+        res.redirect('/login');
+      }
+    });
+});
+
+// router.post('/login', loginPostRoute);
+
+// function loginPostRoute(req, res/*, next*/){
   // passport.authenticate('local', function(err, user, info){
   //   if(err){
   //     return next(err);
@@ -70,7 +78,7 @@ function loginPostRoute(req, res/*, next*/){
   //     return res.redirect('/manager');
   //   });
   // })(req, res, next);
-}
+// });
 
 
 //LOGOUT
@@ -119,23 +127,24 @@ router.post('/create/reservation', function (req, res){
     email: req.body.email
   });
   //updates reservation and decreases available spots
-  res.redirect('/update/reservation/:id/:spots');
+  // res.redirect('/update/reservation/:id/:spots');
+  res.redirect('/reserve');
 });
 
 //user can update the information of reservation
-router.put('/update/reservation/:id/:spots', function (req, res){
-  Event.update({
-    availableSpots: (req.body.spots) - 1
-},{
-  where:{
-    time: req.params.id
-  }
- });
-});
+// router.put('/update/reservation/:id/:spots', function (req, res){
+//   Event.update({
+//     availableSpots: (req.body.spots) - 1
+// },{
+//   where:{
+//     time: req.params.id
+//   }
+//  });
+// });
 
 //user can delete reservation
 // router.delete('/delete/reservation/:id', function (req, res){
-  
+
 //   Customer.destroy({
 //     where: {
 //       id: req.params.id
@@ -154,6 +163,7 @@ router.get('/customerInfo/:id', function(req, res){
   });
 });
 
+//manager creates an event
 router.post('/create/event', function(req, res){
   Event.create({
     name: req.body.name,

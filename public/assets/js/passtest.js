@@ -1,5 +1,3 @@
-$(document).ready(function(){
-
 function checkPass()
 {
     //Store the password field objects into variables ...
@@ -28,5 +26,5 @@ function checkPass()
         message.innerHTML = "Passwords Do Not Match!"
     }
 }
-});
+
 
