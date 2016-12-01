@@ -19,6 +19,7 @@ router.get('/signup', function(req, res){
 
 router.post('/signup', function(req, res){
   //creates new user from valid form
+  //if the email exists
   console.log(req.body);
 
    User.create({
@@ -39,6 +40,18 @@ router.get('/login', function(req, res){
 router.post('/login', loginPostRoute);
 
 function loginPostRoute(req, res/*, next*/){
+  console.log(req.body);
+
+  var enteredPswd = req.body.password;
+
+  // User.findAll({
+  //   where: {
+  //     email: req.body.email,
+  //     $and: [
+  //       {password: enteredPswd}
+  //     ]
+  //   }.then(function(data)
+  // })
   // passport.authenticate('local', function(err, user, info){
   //   if(err){
   //     return next(err);
@@ -141,6 +154,18 @@ router.get('/customerInfo/:id', function(req, res){
   });
 });
 
+router.post('/create/event', function(req, res){
+  Event.create({
+    name: req.body.name,
+    date: req.body.date,
+    startTime: req.body.startTime,
+    endTime: req.body.endTime,
+    location: req.body.location,
+    availableSpots: req.body.availableSpots
+  });
+
+  res.redirect('/manager-test');
+});
 
 //allows manager to update calendar
 router.put('/update/manager/:id', function(req, res){
