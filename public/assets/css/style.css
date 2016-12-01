@@ -7,12 +7,22 @@
 body {
   background-color: rgb(225,225,225);
   font: Georgia, serif;
+  overflow: hidden;
+}
+
+.googleCalendarGM {
+  top: 5%;
+  position: absolute;
+  z-index: 10001;
+  width: 700px;
+  height: 400px;
+  left: 24%;
 }
 
 .imgMain > #banner_backdrop {
   position: relative;
   background: url("../img/res10.jpg") repeat-x;
-  width: 3037px;
+  width: 4037px;
   height: 600px;
   -webkit-animation: aniMain 15s linear infinite;
   opacity: 0.5;
@@ -186,18 +196,26 @@ maye change icons, need space between icons, circle icon woul be betteR?*/
    left: 38%;
    top: 20%;
    box-shadow: 10px 10px 5px #888888;
+   overflow-y: scroll;
 }
 
 .eventCreate {
    border-radius: 25px;
    background: rgb(255,255,255);
+   z-index: 13000;
    padding: 20px;
-   width: 300px;
-   height: 400px;
+   width: 400px;
+   height: 500px;
    position: absolute;
-   left: 38%;
-   top: 20%;
+   right: 1%;
+   top: 14.2%;
    box-shadow: 10px 10px 5px #888888;
+    overflow-y: scroll;
+}
+.eventCreate > .form-group {
+  padding: 0px;
+  margin-bottom: 0px;
+  margin-top: -10px;
 }
 
 .resBtn {
