@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 // var sequelize = require('sequelize');
-var Event = require('../models')['Events'];
+var Events = require('../models')['Events'];
 var User = require('../models')['Users'];
 var passport = require('passport');
-console.log(Event)
+// console.log(Event)
 
 //index route
 router.get('/', function (req, res){
@@ -102,19 +102,23 @@ function adminHandler(req, res, next){
 
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
-  Event.findAll({
-    attributes:[ "name", "data","startTime", "endTime", "location", "availableSpots"]
+  Events.findAll({
+    attributes:[ "name", "date","startTime", "endTime", "location", "availableSpots"]
   }).then(function(data){
+    console.log(data);
     res.render('reserveUser', {evt: data});
+    console.log(data);
   });
 });
 
 router.get('/manager-test', function(req,res){
 
-  Event.findAll({
-    attributes:[ "name", "data","startTime", "endTime", "location", "availableSpots"]
+  Events.findAll({
+    attributes:[ "name", "date","startTime", "endTime", "location", "availableSpots"]
   }).then(function(data){
-      res.render('manager', {evt: Events});
+    console.log(data);
+      res.render('manager', {evt: data});
+      console.log(data);
   });
   // res.render('manager', {event: data});
 });
@@ -163,7 +167,7 @@ router.get('/customerInfo/:id', function(req, res){
 });
 
 router.post('/create/event', function(req, res){
-  Event.create({
+  Events.create({
     name: req.body.name,
     date: req.body.date,
     startTime: req.body.startTime,
@@ -177,7 +181,7 @@ router.post('/create/event', function(req, res){
 
 //allows manager to update calendar
 router.put('/update/manager/:id', function(req, res){
-  Event.update({
+  Events.update({
     name: req.body.name,
     date: req.body.date,
     startTime: req.body.startTime,
@@ -209,7 +213,7 @@ router.put('/update/manager/:id', function(req, res){
 
 //allows manager to delete event on calendar
 router.delete('/delete/manager/:id', function(req, res){
-  Event.destroy({
+  Events.destroy({
     where: {
       id: req.params.id
     }

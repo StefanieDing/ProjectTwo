@@ -1,8 +1,19 @@
 function tdAddThisClass() {
+
+	// $("td").filter(function(){
+	//   return $(this).text() == 10;
+	// }).css("background-color", "red");
+	//
+
 	$('td').each(function () {
-		if ($(this).html().match(/^\s*\d[\d,\.]*\s*$/)) {
+		if ($(this).html() == 14) {
 			// $(this).css('background-color', 'red');
 			$(this).addClass('calDateData');
+			// {{#each evt}}
+		  //     <li>
+		  //       <p>ID : {{this.name}} {{this.date}} {{this.startTime}} {{this.name}} </p>
+		  //     </li>
+		  // {{/each}}
 			// TODO: something cool
 		}
 	});
