@@ -1,7 +1,7 @@
 function tdAddThisClass() {
 	$('td').each(function () {
 		if ($(this).html().match(/^\s*\d[\d,\.]*\s*$/)) {
-			$(this).css('background-color', 'red');
+			// $(this).css('background-color', 'red');
 			$(this).addClass('calDateData');
 			// TODO: something cool
 		}
@@ -139,13 +139,6 @@ window.onclick = function(event) {
     }
 }
 
-
-
-
-
-
-
-//this gets any td with a class name of "calDateData"
 function modelPrompt() {
 
 $('.today').click(function(){

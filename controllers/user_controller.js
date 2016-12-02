@@ -102,13 +102,21 @@ function adminHandler(req, res, next){
 
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
-  Event.findAll({}).then(function(data){
-    res.render('reserveUser');
+  Event.findAll({
+    attributes:[ "name", "data","startTime", "endTime", "location", "availableSpots"]
+  }).then(function(data){
+    res.render('reserveUser', {evt: data});
   });
 });
 
 router.get('/manager-test', function(req,res){
-  res.render('manager');
+
+  Event.findAll({
+    attributes:[ "name", "data","startTime", "endTime", "location", "availableSpots"]
+  }).then(function(data){
+      res.render('manager', {evt: Events});
+  });
+  // res.render('manager', {event: data});
 });
 
 //takes in the information user inputs to reserve a booking
@@ -135,7 +143,7 @@ router.put('/update/reservation/:id/:spots', function (req, res){
 
 //user can delete reservation
 // router.delete('/delete/reservation/:id', function (req, res){
-  
+
 //   Customer.destroy({
 //     where: {
 //       id: req.params.id

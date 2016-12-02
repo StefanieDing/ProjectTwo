@@ -10,6 +10,27 @@ body {
   overflow: hidden;
 }
 
+.teamLogo {
+  position: absolute;
+  float: left;
+  top: 2%;
+  width: 100px;
+  left: 40%;
+  font-size: 20px;
+  font-family: 'Bungee', cursive;
+  z-index: 23000;
+}
+.Testingthis {
+  position: absolute;
+  width: 400px;
+  height: 500px;
+  z-index: 14000;
+  background-color: white;
+  color: black;
+  top:0;
+  left: 0;
+}
+
 .googleCalendarGM {
   top: 5%;
   position: absolute;
@@ -22,7 +43,7 @@ body {
 .imgMain > #banner_backdrop {
   position: relative;
   background: url("../img/res10.jpg") repeat-x;
-  width: 4037px;
+  width: 2553px;
   height: 600px;
   -webkit-animation: aniMain 15s linear infinite;
   opacity: 0.5;
@@ -183,7 +204,7 @@ maye change icons, need space between icons, circle icon woul be betteR?*/
 
 @-webkit-keyframes aniMain {
   from{ right: 0px;}
-	to { right: 1500px; }
+	to { right: 851px; }
 }
 
 .mainOptionWin {
