@@ -37,21 +37,31 @@ router.get('/login', function(req, res){
   res.render('login');
 });
 
-router.post('/login', loginPostRoute);
 
-function loginPostRoute(req, res/*, next*/){
+router.post('/login', function(req, res){
   console.log(req.body);
 
-  var enteredPswd = req.body.password;
+  User.findAll({
+    where: {
+      email: req.body.email,
+      password: req.body.password
+    }
+  }).then(function(data){
+    console.log(data);
+      if(data != ""){
+        res.redirect('/manager-test');
+      } else{
+        //need to add message saying the password and user didn't match
+        res.redirect('/login')
+      }
+  });
 
-  // User.findAll({
-  //   where: {
-  //     email: req.body.email,
-  //     $and: [
-  //       {password: enteredPswd}
-  //     ]
-  //   }.then(function(data)
-  // })
+});
+
+// router.post('/login', loginPostRoute);
+
+// function loginPostRoute(req, res/*, next*/){
+//   console.log(req.body);
   // passport.authenticate('local', function(err, user, info){
   //   if(err){
   //     return next(err);
@@ -70,40 +80,43 @@ function loginPostRoute(req, res/*, next*/){
   //     return res.redirect('/manager');
   //   });
   // })(req, res, next);
-}
+// }
 
 
 //LOGOUT
 //we will need to make a log out page or modal for the below route.
-router.get('/logout', logout)
-  function logout(req, res){
-    if(req.isAuthenticated()){
-      req.logout();
-      req.session.messages='Log out success!'
-    }
-      res.redirect('/');
-  }
+// router.get('/logout', logout)
+//   function logout(req, res){
+//     if(req.isAuthenticated()){
+//       req.logout();
+//       req.session.messages='Log out success!'
+//     }
+//       res.redirect('/');
+//   }
 
 
-//need to add a route to authenticate the manager. see 2.5;
-router.get('/manager', requireAuth, adminHandler)
+// //need to add a route to authenticate the manager. see 2.5;
+// router.get('/manager', requireAuth, adminHandler)
 
-function requireAuth(req, res, next){
-  if(req.isAuthenticated()){
-    next();
-  } else {
-    res.redirect('/login');
-  }
-}
+// function requireAuth(req, res, next){
+//   if(req.isAuthenticated()){
+//     next();
+//   } else {
+//     res.redirect('/login');
+//   }
+// }
 
-function adminHandler(req, res, next){
-  res.render('manager', {});
-};
+// function adminHandler(req, res, next){
+//   res.render('manager', {});
+// };
 
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
-  Event.findAll({}).then(function(data){
-    res.render('reserveUser');
+  Event.findAll({
+    attributes: ['name', 'date', 'startTime', 'endTime', 'location', 'availableSpots']
+  }).then(function(data){
+
+    res.render('reserveUser', {event: data});
   });
 });
 
@@ -154,6 +167,7 @@ router.get('/customerInfo/:id', function(req, res){
   });
 });
 
+//manager creates new event
 router.post('/create/event', function(req, res){
   Event.create({
     name: req.body.name,
