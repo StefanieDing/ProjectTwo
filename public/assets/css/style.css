@@ -216,6 +216,18 @@ maye change icons, need space between icons, circle icon woul be betteR?*/
    left: 38%;
    top: 20%;
    box-shadow: 10px 10px 5px #888888;
+   /*overflow-y: scroll;*/
+}
+.mainOptionScroll {
+   border-radius: 25px;
+   background: rgb(255,255,255);
+   padding: 20px;
+   width: 300px;
+   height: 400px;
+   position: absolute;
+   left: 38%;
+   top: 20%;
+   box-shadow: 10px 10px 5px #888888;
    overflow-y: scroll;
 }
 
