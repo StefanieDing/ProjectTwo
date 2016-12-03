@@ -45,14 +45,15 @@ npm install
     "sequelize-cli": "^2.4.0"
 
 
-
+```
+![Screenshot](/public/assets/screenshot/Index_Screenshot.png?raw=true)
+Home page of app
 ## Running the tests
 
 Explain how to run the automated tests for this system (if applicable)
 
-![Screenshot](/public/assets/screenshot/Index_Screenshot.png)
-Home page of app
 
+```
 ## Built With
 
  express = require('express');
@@ -90,13 +91,14 @@ function awesomeThing() {
 
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
+```
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
+```
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc
+```
