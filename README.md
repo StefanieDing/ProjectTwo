@@ -50,7 +50,7 @@ npm install
 
 Explain how to run the automated tests for this system (if applicable)
 
-![Index](public/assets/screenshot/Index_Screenshot.png)
+![Screenshot](/public/assets/screenshot/Index_Screenshot.png)
 Home page of app
 
 ## Built With
