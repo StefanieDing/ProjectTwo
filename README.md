@@ -68,7 +68,7 @@ Explain how to run the automated tests for this system (if applicable)
 * Atom - Sublime Text is pretty cool too I guess
 * Balsamiq - Wireframe of choice 
 * RoboMongo - Because .pretty() everything is tedious
-
+```
 ## Walk throughs of code
 For Project presentation, you can include snippets of code you found buggy, interesting, or are overall proud of here.  Try to limit the quantity and size to quick readable bits.
 
@@ -96,9 +96,9 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 ```
+
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc
-```
