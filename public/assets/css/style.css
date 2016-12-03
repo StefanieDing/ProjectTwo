@@ -13,16 +13,20 @@ body {
 .teamLogo {
   position: absolute;
   float: left;
-  top: 2%;
-  width: 100px;
-  left: 40%;
+  top: -2%;
+  width: 100%;
+  left: 5%;
   font-size: 14px;
   font-family: 'Bungee', cursive;
   z-index: 23000;
 }
 
+#icon-logo{
+  margin: 20px;
+}
+
 .teamLogo >  h1 {
-  font-size: 14px;
+  font-size: 30px;
   float: left;
 }
 
