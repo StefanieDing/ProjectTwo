@@ -7,7 +7,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
 		<link rel="stylesheet" href="calendar/calendar.css" />
-
+		<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
 		<!-- Update your html tag to include the itemscope and itemtype attributes. -->
 		<html itemscope itemtype="http://schema.org/Type">
 
@@ -46,6 +46,8 @@
 		  </div>
 		</div>
 
+		{{>logo/logo}}
+
 		{{{ body }}}
 
 		{{>footer/socialbar}}
@@ -53,11 +55,18 @@
 	</body>
 </HTML>
 
+<<<<<<< HEAD
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
+=======
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+>>>>>>> 9cb337a3d1a7d6f13dec6529fd63b0565cc17820
 <script src="calendar/calendar.js"></script>
 <script>
 var cal = CALENDAR();
-
+$(document).ready(function() {
+	$("#label").trigger('click');
+});
 cal.init();
+
 </script>

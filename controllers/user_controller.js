@@ -4,7 +4,7 @@ var router = express.Router();
 var Event = require('../models')['Events'];
 var User = require('../models')['Users'];
 var passport = require('passport');
-console.log(Event)
+// console.log(Event)
 
 //index route
 router.get('/', function (req, res){
@@ -37,6 +37,7 @@ router.get('/login', function(req, res){
   res.render('login');
 });
 
+<<<<<<< HEAD
 router.post('/login', function(req, res){
   console.log(req.body);
   var enteredPswd = req.body.password;
@@ -60,6 +61,33 @@ router.post('/login', function(req, res){
 // router.post('/login', loginPostRoute);
 
 // function loginPostRoute(req, res/*, next*/){
+=======
+
+router.post('/login', function(req, res){
+  console.log(req.body);
+
+  User.findAll({
+    where: {
+      email: req.body.email,
+      password: req.body.password
+    }
+  }).then(function(data){
+    console.log(data);
+      if(data != ""){
+        res.redirect('/manager-test');
+      } else{
+        //need to add message saying the password and user didn't match
+        res.redirect('/login')
+      }
+  });
+
+});
+
+// router.post('/login', loginPostRoute);
+
+// function loginPostRoute(req, res/*, next*/){
+//   console.log(req.body);
+>>>>>>> 9cb337a3d1a7d6f13dec6529fd63b0565cc17820
   // passport.authenticate('local', function(err, user, info){
   //   if(err){
   //     return next(err);
@@ -78,45 +106,60 @@ router.post('/login', function(req, res){
   //     return res.redirect('/manager');
   //   });
   // })(req, res, next);
+<<<<<<< HEAD
 // });
+=======
+// }
+>>>>>>> 9cb337a3d1a7d6f13dec6529fd63b0565cc17820
 
 
 //LOGOUT
 //we will need to make a log out page or modal for the below route.
-router.get('/logout', logout)
-  function logout(req, res){
-    if(req.isAuthenticated()){
-      req.logout();
-      req.session.messages='Log out success!'
-    }
-      res.redirect('/');
-  }
+// router.get('/logout', logout)
+//   function logout(req, res){
+//     if(req.isAuthenticated()){
+//       req.logout();
+//       req.session.messages='Log out success!'
+//     }
+//       res.redirect('/');
+//   }
 
 
-//need to add a route to authenticate the manager. see 2.5;
-router.get('/manager', requireAuth, adminHandler)
+// //need to add a route to authenticate the manager. see 2.5;
+// router.get('/manager', requireAuth, adminHandler)
 
-function requireAuth(req, res, next){
-  if(req.isAuthenticated()){
-    next();
-  } else {
-    res.redirect('/login');
-  }
-}
+// function requireAuth(req, res, next){
+//   if(req.isAuthenticated()){
+//     next();
+//   } else {
+//     res.redirect('/login');
+//   }
+// }
 
-function adminHandler(req, res, next){
-  res.render('manager', {});
-};
+// function adminHandler(req, res, next){
+//   res.render('manager', {});
+// };
 
 //displays calendar of available dates
 router.get('/reserve', function (req, res){
-  Event.findAll({}).then(function(data){
-    res.render('reserveUser');
+  Event.findAll({
+    attributes: ['name', 'date', 'startTime', 'endTime', 'location', 'availableSpots']
+  }).then(function(data){
+
+    res.render('reserveUser', {evt: data});
   });
 });
 
 router.get('/manager-test', function(req,res){
-  res.render('manager');
+
+  Event.findAll({
+    attributes:[ "name", "date","startTime", "endTime", "location", "availableSpots"]
+  }).then(function(data){
+    console.log(data);
+      res.render('manager', {evt: data});
+      console.log(data);
+  });
+  // res.render('manager', {event: data});
 });
 
 //takes in the information user inputs to reserve a booking
@@ -163,9 +206,13 @@ router.get('/customerInfo/:id', function(req, res){
   });
 });
 
+<<<<<<< HEAD
 //manager creates an event
+=======
+//manager creates new event
+>>>>>>> 9cb337a3d1a7d6f13dec6529fd63b0565cc17820
 router.post('/create/event', function(req, res){
-  Event.create({
+  Events.create({
     name: req.body.name,
     date: req.body.date,
     startTime: req.body.startTime,
@@ -179,7 +226,7 @@ router.post('/create/event', function(req, res){
 
 //allows manager to update calendar
 router.put('/update/manager/:id', function(req, res){
-  Event.update({
+  Events.update({
     name: req.body.name,
     date: req.body.date,
     startTime: req.body.startTime,
@@ -211,7 +258,7 @@ router.put('/update/manager/:id', function(req, res){
 
 //allows manager to delete event on calendar
 router.delete('/delete/manager/:id', function(req, res){
-  Event.destroy({
+  Events.destroy({
     where: {
       id: req.params.id
     }
