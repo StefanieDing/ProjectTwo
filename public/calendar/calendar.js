@@ -1,3 +1,8 @@
+$('#reserveBtn').on('click', function(){
+	alert('You have successfully booked this event!');
+	$(this).css('background-color', 'green');
+});
+
 function tdAddThisClass() {
 
 	// $("td").filter(function(){
