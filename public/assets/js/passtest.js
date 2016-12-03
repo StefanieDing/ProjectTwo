@@ -1,7 +1,13 @@
+ console.log('please work');
+
 $(document).ready(function(){
+
+    // checkPass();
+    console.log('please work');
 
 function checkPass()
 {
+    console.log('please work');
     //Store the password field objects into variables ...
     var pass1 = document.getElementById('pass1');
     var pass2 = document.getElementById('pass2');
@@ -29,4 +35,6 @@ function checkPass()
     }
 }
 });
+
+
 
