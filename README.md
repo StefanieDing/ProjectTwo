@@ -44,7 +44,7 @@ npm install
     "sequelize": "^3.27.0",
     "sequelize-cli": "^2.4.0"
 
-
+https://rcbjuly2016team.slack.com/files/stefanieding/F39FRB29X/index_screenshot.png
 ## Running the tests
 
 Explain how to run the automated tests for this system (if applicable)
