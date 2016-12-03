@@ -1,8 +1,19 @@
 function tdAddThisClass() {
+
+	// $("td").filter(function(){
+	//   return $(this).text() == 10;
+	// }).css("background-color", "red");
+	//
+
 	$('td').each(function () {
-		if ($(this).html().match(/^\s*\d[\d,\.]*\s*$/)) {
-			$(this).css('background-color', 'red');
+		if ($(this).html() == 14) {
+			$(this).css('background-color', 'rgb(209,43,82)');
 			$(this).addClass('calDateData');
+			// {{#each evt}}
+		  //     <li>
+		  //       <p>ID : {{this.name}} {{this.date}} {{this.startTime}} {{this.name}} </p>
+		  //     </li>
+		  // {{/each}}
 			// TODO: something cool
 		}
 	});
@@ -139,13 +150,6 @@ window.onclick = function(event) {
     }
 }
 
-
-
-
-
-
-
-//this gets any td with a class name of "calDateData"
 function modelPrompt() {
 
 $('.today').click(function(){

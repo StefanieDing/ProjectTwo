@@ -4,7 +4,7 @@ var router = express.Router();
 var Event = require('../models')['Events'];
 var User = require('../models')['Users'];
 var passport = require('passport');
-console.log(Event)
+// console.log(Event)
 
 //index route
 router.get('/', function (req, res){
@@ -116,12 +116,20 @@ router.get('/reserve', function (req, res){
     attributes: ['name', 'date', 'startTime', 'endTime', 'location', 'availableSpots']
   }).then(function(data){
 
-    res.render('reserveUser', {event: data});
+    res.render('reserveUser', {evt: data});
   });
 });
 
 router.get('/manager-test', function(req,res){
-  res.render('manager');
+
+  Event.findAll({
+    attributes:[ "name", "date","startTime", "endTime", "location", "availableSpots"]
+  }).then(function(data){
+    console.log(data);
+      res.render('manager', {evt: data});
+      console.log(data);
+  });
+  // res.render('manager', {event: data});
 });
 
 //takes in the information user inputs to reserve a booking
@@ -148,7 +156,7 @@ router.put('/update/reservation/:id/:spots', function (req, res){
 
 //user can delete reservation
 // router.delete('/delete/reservation/:id', function (req, res){
-  
+
 //   Customer.destroy({
 //     where: {
 //       id: req.params.id
@@ -169,7 +177,7 @@ router.get('/customerInfo/:id', function(req, res){
 
 //manager creates new event
 router.post('/create/event', function(req, res){
-  Event.create({
+  Events.create({
     name: req.body.name,
     date: req.body.date,
     startTime: req.body.startTime,
@@ -183,7 +191,7 @@ router.post('/create/event', function(req, res){
 
 //allows manager to update calendar
 router.put('/update/manager/:id', function(req, res){
-  Event.update({
+  Events.update({
     name: req.body.name,
     date: req.body.date,
     startTime: req.body.startTime,
@@ -215,7 +223,7 @@ router.put('/update/manager/:id', function(req, res){
 
 //allows manager to delete event on calendar
 router.delete('/delete/manager/:id', function(req, res){
-  Event.destroy({
+  Events.destroy({
     where: {
       id: req.params.id
     }
